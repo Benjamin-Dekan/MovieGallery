@@ -1,8 +1,11 @@
 allowBuilds:
   '@prisma/engines': false
+  esbuild: true
+  msgpackr-extract: true
   prisma: false
   sharp: true
   unrs-resolver: true
+  workerd: true
 minimumReleaseAgeExclude:
   - '@next/env@16.3.0'
   - '@next/swc-darwin-arm64@16.3.0'
