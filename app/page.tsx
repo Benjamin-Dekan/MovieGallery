@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Cormorant, Playfair_Display } from "next/font/google";
 import { Compass, SlidersHorizontal, Search } from "lucide-react";
+import SignIn from "./ui/signin-button";
 
 const cormorant = Cormorant({
   subsets: ["latin"],
@@ -33,12 +34,18 @@ export default function Home() {
                 Barnacle
               </h1>
             </div>
-            <Link
-              href="/discover"
-              className="rounded-full px-4 py-2 bg-black/50 backdrop-blur-md ring-1 ring-white/10 hover:bg-black/70 transition-colors active:scale-95"
-            >
-              Enter site
-            </Link>
+
+            <div className="flex gap-3">
+              <Link
+                href="/discover"
+                className="rounded-full px-4 py-2 bg-black/50 backdrop-blur-md ring-1 ring-white/10 hover:bg-black/70 transition-colors active:scale-95"
+              >
+                Enter site
+              </Link>
+
+              {/* Add Sign out check */}
+              <SignIn />
+            </div>
           </div>
         </header>
       </div>
