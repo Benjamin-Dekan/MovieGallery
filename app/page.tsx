@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Cormorant, Playfair_Display } from "next/font/google";
 import { Compass, SlidersHorizontal, Search } from "lucide-react";
 import SignIn from "./ui/signin-button";
+import { auth } from "../auth";
 
 const cormorant = Cormorant({
   subsets: ["latin"],
@@ -16,7 +17,9 @@ const playfair = Playfair_Display({
   style: ["normal", "italic"],
 });
 
-export default function Home() {
+export default async function Home() {
+  const session = await auth();
+
   return (
     <main className="min-h-screen flex flex-col bg-[#004B5C]/20">
       {/* Navigation Bar */}
@@ -42,9 +45,21 @@ export default function Home() {
               >
                 Enter site
               </Link>
-
-              {/* Add Sign out check */}
-              <SignIn />
+              {session ? (
+                <div>
+                  <Link href="/profile">
+                    <Image
+                      src={session?.user?.image ?? "/default-avatar.svg"}
+                      alt={session?.user?.name ?? "User Avatar"}
+                      width={40}
+                      height={40}
+                      className="rounded-full"
+                    />
+                  </Link>
+                </div>
+              ) : (
+                <SignIn />
+              )}
             </div>
           </div>
         </header>
